@@ -22,7 +22,17 @@ export async function login(email, password) {
     throw new Error(error.detail || "Erreur login");
   }
 
-  return await response.json();
+  const data = await response.json();
+
+  // Stockage du token pour les requêtes protégées
+  localStorage.setItem("token", data.access_token);
+
+  // Optionnel mais utile pour afficher l'officier connecté
+  if (data.officer) {
+    localStorage.setItem("officer", JSON.stringify(data.officer));
+  }
+
+  return data;
 }
 
 // 🆕 REGISTER
