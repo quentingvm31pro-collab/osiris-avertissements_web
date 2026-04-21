@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSIRIS - Avertissement</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body class="dashboard-page">
+  <div class="page">
+    <div class="top-bar">
+      <input id="searchInput" type="text" placeholder="Rechercher un joueur...">
+      <div id="officerLabel" class="officer-label"></div>
+      <button id="addWarningButton">Ajouter un avertissement</button>
+      <button id="logoutButton" class="danger-button">Déconnexion</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="warnings-table">
+        <thead>
+          <tr>
+            <th>Pseudo</th>
+            <th>Raison</th>
+            <th>Date</th>
+            <th>Officier</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="playersTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="warningModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Ajouter un avertissement</h2>
+
+      <label for="playerPseudoInput">Pseudo</label>
+      <input id="playerPseudoInput" type="text" placeholder="Pseudo du joueur">
+
+      <label for="warningReasonInput">Raison</label>
+      <textarea id="warningReasonInput" rows="5" placeholder="Raison de l'avertissement"></textarea>
+
+      <div class="modal-actions">
+        <button id="saveWarningButton">Valider</button>
+        <button id="cancelWarningButton" class="secondary-button">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

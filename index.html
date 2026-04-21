@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSIRIS - Avertissement | Connexion</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body class="login-page">
+
+  <div class="login-box">
+    <h2>Connexion officier</h2>
+
+    <input id="email" type="text" placeholder="Email">
+    <input id="password" type="password" placeholder="Mot de passe">
+
+    <button id="loginButton">Se connecter</button>
+    <button id="registerPageButton" class="secondary-button">Créer un compte</button>
+
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <script type="module">
+    import { login } from "./api.js";
+
+    const loginButton = document.getElementById("loginButton");
+    const registerPageButton = document.getElementById("registerPageButton");
+
+    loginButton.addEventListener("click", handleLogin);
+    registerPageButton.addEventListener("click", () => {
+      window.location.href = "register.html";
+    });
+
+    async function handleLogin() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("errorMessage");
+
+      errorDiv.textContent = "";
+
+      if (!email || !password) {
+        errorDiv.textContent = "Remplis l'email et le mot de passe.";
+        return;
+      }
+
+      try {
+        const data = await login(email, password);
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("officer", JSON.stringify(data.officer));
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        errorDiv.textContent = "Connexion refusée : " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>

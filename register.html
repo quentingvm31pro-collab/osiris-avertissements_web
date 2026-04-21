@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSIRIS - Avertissement | Inscription</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body class="login-page">
+
+  <div class="login-box">
+    <h2>Créer un compte officier</h2>
+
+    <input id="pseudo" type="text" placeholder="Pseudo en jeu">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Mot de passe">
+    <input id="confirmPassword" type="password" placeholder="Confirmer le mot de passe">
+
+    <button id="registerButton">Créer le compte</button>
+    <button id="backButton" class="secondary-button">Retour à la connexion</button>
+
+    <div id="errorMessage" class="error-message"></div>
+    <div id="successMessage" class="success-message"></div>
+  </div>
+
+  <script type="module">
+    import { registerOfficer } from "./api.js";
+
+    const registerButton = document.getElementById("registerButton");
+    const backButton = document.getElementById("backButton");
+    const errorDiv = document.getElementById("errorMessage");
+    const successDiv = document.getElementById("successMessage");
+
+    registerButton.addEventListener("click", handleRegister);
+    backButton.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    async function handleRegister() {
+      const pseudo = document.getElementById("pseudo").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      errorDiv.textContent = "";
+      successDiv.textContent = "";
+
+      if (!pseudo || !email || !password || !confirmPassword) {
+        errorDiv.textContent = "Tous les champs sont requis.";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        errorDiv.textContent = "Les mots de passe ne correspondent pas.";
+        return;
+      }
+
+      try {
+        await registerOfficer(pseudo, email, password);
+        successDiv.textContent = "Compte créé avec succès. Redirection...";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1200);
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      }
+    }
+  </script>
+</body>
+</html>

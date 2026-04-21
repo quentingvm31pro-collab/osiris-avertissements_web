@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #f0f0f0;
+  padding: 10px;
+}
+
+button {
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #fff;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4a4a4a;
+}
+
+.secondary-button {
+  background-color: #2d2d2d;
+}
+
+.danger-button {
+  background-color: #6a2a2a;
+  border-color: #8a3a3a;
+}
+
+.danger-button:hover {
+  background-color: #7a3333;
+}
+
+/* LOGIN */
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-box {
+  background-color: #252525;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.45);
+}
+
+.login-box h2 {
+  margin: 0 0 8px 0;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 13px;
+  min-height: 18px;
+}
+
+.success-message {
+  color: #6fdc8c;
+  font-size: 13px;
+  min-height: 18px;
+}
+
+/* DASHBOARD */
+body.dashboard-page {
+  display: block;
+  min-height: 100vh;
+}
+
+.page {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+#searchInput {
+  min-width: 260px;
+  flex: 1 1 260px;
+}
+
+.officer-label {
+  padding: 10px 12px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  background-color: #252525;
+  border: 1px solid #444;
+  border-radius: 6px;
+}
+
+.table-wrapper {
+  border: 1px solid #444;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #252525;
+}
+
+.warnings-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.warnings-table th,
+.warnings-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #3a3a3a;
+  border-right: 1px solid #3a3a3a;
+  vertical-align: top;
+  text-align: left;
+  word-break: break-word;
+}
+
+.warnings-table th:last-child,
+.warnings-table td:last-child {
+  border-right: none;
+}
+
+.warnings-table thead th {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+}
+
+.warnings-table tbody tr {
+  background-color: #252525;
+}
+
+.warnings-table tbody tr:nth-child(even) {
+  background-color: #222222;
+}
+
+.warnings-table .col-pseudo {
+  width: 180px;
+  font-weight: bold;
+}
+
+.warnings-table .col-reason {
+  width: auto;
+}
+
+.warnings-table .col-date {
+  width: 180px;
+}
+
+.warnings-table .col-officer {
+  width: 140px;
+}
+
+.warnings-table .col-actions {
+  width: 170px;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.small-button {
+  padding: 7px 10px;
+}
+
+.empty-state-cell {
+  padding: 20px !important;
+  color: #bbb;
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-content {
+  width: min(560px, 100%);
+  background-color: #252525;
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content h2 {
+  margin: 0 0 6px 0;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .warnings-table th:nth-child(3),
+  .warnings-table td:nth-child(3) {
+    width: 150px;
+  }
+
+  .warnings-table th:nth-child(4),
+  .warnings-table td:nth-child(4) {
+    width: 120px;
+  }
+
+  .warnings-table th:nth-child(5),
+  .warnings-table td:nth-child(5) {
+    width: 150px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 12px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .warnings-table {
+    min-width: 860px;
+  }
+}
